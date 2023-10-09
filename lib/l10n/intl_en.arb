@@ -1,0 +1,21 @@
+{
+    "appTitle": "Flutter Quiz App",
+    "appInfo": "Learn + Take Quiz + Repeat",
+    "alertWarning": "Warning",
+    "alertNoConnection": "No connection, please check your internet",
+    "alertFailed": "Failed",
+    "alertTimeOut": "Request time out",
+    "alertConfirm": "Confirm",
+    "alertCancel": "Cancel",
+    "alertOk": "Ok",
+    "alertLogout": "Are you sure you want to log out?",
+    "alertQuit": "Are you sure you want to quit the app?",
+    "play": "Play",
+    "topics": "Topics",
+    "share": "Share",
+    "rateUs": "Rate Us",
+    "quizPage": "Quiz Page",
+    "yourScore": "Your Score",
+    "yourReport": "Your Report",
+    "shareYourScore": "Share Your Score"
+}
