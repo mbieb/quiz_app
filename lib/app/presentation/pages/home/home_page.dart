@@ -51,7 +51,9 @@ class _HomeBodyPage extends StatelessWidget {
               ),
               gapH64,
               PrimaryButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.push(AppRouter.quiz);
+                },
                 text: i10n.play.toUpperCase(),
               ),
               gapH8,
