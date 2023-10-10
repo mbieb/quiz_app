@@ -18,33 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$QuizEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String mode, String? topicId) started,
+    required TResult Function() fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String mode, String? topicId)? started,
+    TResult? Function()? fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String mode, String? topicId)? started,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_FetchData value) fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_FetchData value)? fetchData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_FetchData value)? fetchData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +78,8 @@ abstract class _$$StartedImplCopyWith<$Res> {
   factory _$$StartedImplCopyWith(
           _$StartedImpl value, $Res Function(_$StartedImpl) then) =
       __$$StartedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String mode, String? topicId});
 }
 
 /// @nodoc
@@ -81,51 +89,86 @@ class __$$StartedImplCopyWithImpl<$Res>
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mode = null,
+    Object? topicId = freezed,
+  }) {
+    return _then(_$StartedImpl(
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+      topicId: freezed == topicId
+          ? _value.topicId
+          : topicId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$StartedImpl implements _Started {
-  const _$StartedImpl();
+  const _$StartedImpl({required this.mode, this.topicId});
+
+  @override
+  final String mode;
+  @override
+  final String? topicId;
 
   @override
   String toString() {
-    return 'QuizEvent.started()';
+    return 'QuizEvent.started(mode: $mode, topicId: $topicId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$StartedImpl &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.topicId, topicId) || other.topicId == topicId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, mode, topicId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
+      __$$StartedImplCopyWithImpl<_$StartedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String mode, String? topicId) started,
+    required TResult Function() fetchData,
   }) {
-    return started();
+    return started(mode, topicId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String mode, String? topicId)? started,
+    TResult? Function()? fetchData,
   }) {
-    return started?.call();
+    return started?.call(mode, topicId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String mode, String? topicId)? started,
+    TResult Function()? fetchData,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started();
+      return started(mode, topicId);
     }
     return orElse();
   }
@@ -134,6 +177,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_FetchData value) fetchData,
   }) {
     return started(this);
   }
@@ -142,6 +186,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_FetchData value)? fetchData,
   }) {
     return started?.call(this);
   }
@@ -150,6 +195,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_FetchData value)? fetchData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -160,7 +206,116 @@ class _$StartedImpl implements _Started {
 }
 
 abstract class _Started implements QuizEvent {
-  const factory _Started() = _$StartedImpl;
+  const factory _Started({required final String mode, final String? topicId}) =
+      _$StartedImpl;
+
+  String get mode;
+  String? get topicId;
+  @JsonKey(ignore: true)
+  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchDataImplCopyWith<$Res> {
+  factory _$$FetchDataImplCopyWith(
+          _$FetchDataImpl value, $Res Function(_$FetchDataImpl) then) =
+      __$$FetchDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchDataImplCopyWithImpl<$Res>
+    extends _$QuizEventCopyWithImpl<$Res, _$FetchDataImpl>
+    implements _$$FetchDataImplCopyWith<$Res> {
+  __$$FetchDataImplCopyWithImpl(
+      _$FetchDataImpl _value, $Res Function(_$FetchDataImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FetchDataImpl implements _FetchData {
+  const _$FetchDataImpl();
+
+  @override
+  String toString() {
+    return 'QuizEvent.fetchData()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String mode, String? topicId) started,
+    required TResult Function() fetchData,
+  }) {
+    return fetchData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String mode, String? topicId)? started,
+    TResult? Function()? fetchData,
+  }) {
+    return fetchData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String mode, String? topicId)? started,
+    TResult Function()? fetchData,
+    required TResult orElse(),
+  }) {
+    if (fetchData != null) {
+      return fetchData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_FetchData value) fetchData,
+  }) {
+    return fetchData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_FetchData value)? fetchData,
+  }) {
+    return fetchData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_FetchData value)? fetchData,
+    required TResult orElse(),
+  }) {
+    if (fetchData != null) {
+      return fetchData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchData implements QuizEvent {
+  const factory _FetchData() = _$FetchDataImpl;
 }
 
 /// @nodoc
@@ -169,6 +324,8 @@ mixin _$QuizState {
   Option<Either<AppFailure, QuizSuccess>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
   Option<List<Quiz>> get quizListOption => throw _privateConstructorUsedError;
+  Option<List<Question>> get questionListOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuizStateCopyWith<QuizState> get copyWith =>
@@ -183,7 +340,8 @@ abstract class $QuizStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       Option<Either<AppFailure, QuizSuccess>> failureOrSuccessOption,
-      Option<List<Quiz>> quizListOption});
+      Option<List<Quiz>> quizListOption,
+      Option<List<Question>> questionListOption});
 }
 
 /// @nodoc
@@ -202,6 +360,7 @@ class _$QuizStateCopyWithImpl<$Res, $Val extends QuizState>
     Object? isLoading = null,
     Object? failureOrSuccessOption = null,
     Object? quizListOption = null,
+    Object? questionListOption = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -216,6 +375,10 @@ class _$QuizStateCopyWithImpl<$Res, $Val extends QuizState>
           ? _value.quizListOption
           : quizListOption // ignore: cast_nullable_to_non_nullable
               as Option<List<Quiz>>,
+      questionListOption: null == questionListOption
+          ? _value.questionListOption
+          : questionListOption // ignore: cast_nullable_to_non_nullable
+              as Option<List<Question>>,
     ) as $Val);
   }
 }
@@ -231,7 +394,8 @@ abstract class _$$QuizStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       Option<Either<AppFailure, QuizSuccess>> failureOrSuccessOption,
-      Option<List<Quiz>> quizListOption});
+      Option<List<Quiz>> quizListOption,
+      Option<List<Question>> questionListOption});
 }
 
 /// @nodoc
@@ -248,6 +412,7 @@ class __$$QuizStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? failureOrSuccessOption = null,
     Object? quizListOption = null,
+    Object? questionListOption = null,
   }) {
     return _then(_$QuizStateImpl(
       isLoading: null == isLoading
@@ -262,6 +427,10 @@ class __$$QuizStateImplCopyWithImpl<$Res>
           ? _value.quizListOption
           : quizListOption // ignore: cast_nullable_to_non_nullable
               as Option<List<Quiz>>,
+      questionListOption: null == questionListOption
+          ? _value.questionListOption
+          : questionListOption // ignore: cast_nullable_to_non_nullable
+              as Option<List<Question>>,
     ));
   }
 }
@@ -272,7 +441,8 @@ class _$QuizStateImpl extends _QuizState {
   const _$QuizStateImpl(
       {required this.isLoading,
       required this.failureOrSuccessOption,
-      required this.quizListOption})
+      required this.quizListOption,
+      required this.questionListOption})
       : super._();
 
   @override
@@ -281,10 +451,12 @@ class _$QuizStateImpl extends _QuizState {
   final Option<Either<AppFailure, QuizSuccess>> failureOrSuccessOption;
   @override
   final Option<List<Quiz>> quizListOption;
+  @override
+  final Option<List<Question>> questionListOption;
 
   @override
   String toString() {
-    return 'QuizState(isLoading: $isLoading, failureOrSuccessOption: $failureOrSuccessOption, quizListOption: $quizListOption)';
+    return 'QuizState(isLoading: $isLoading, failureOrSuccessOption: $failureOrSuccessOption, quizListOption: $quizListOption, questionListOption: $questionListOption)';
   }
 
   @override
@@ -297,12 +469,14 @@ class _$QuizStateImpl extends _QuizState {
             (identical(other.failureOrSuccessOption, failureOrSuccessOption) ||
                 other.failureOrSuccessOption == failureOrSuccessOption) &&
             (identical(other.quizListOption, quizListOption) ||
-                other.quizListOption == quizListOption));
+                other.quizListOption == quizListOption) &&
+            (identical(other.questionListOption, questionListOption) ||
+                other.questionListOption == questionListOption));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, failureOrSuccessOption, quizListOption);
+  int get hashCode => Object.hash(runtimeType, isLoading,
+      failureOrSuccessOption, quizListOption, questionListOption);
 
   @JsonKey(ignore: true)
   @override
@@ -313,10 +487,12 @@ class _$QuizStateImpl extends _QuizState {
 
 abstract class _QuizState extends QuizState {
   const factory _QuizState(
-      {required final bool isLoading,
-      required final Option<Either<AppFailure, QuizSuccess>>
-          failureOrSuccessOption,
-      required final Option<List<Quiz>> quizListOption}) = _$QuizStateImpl;
+          {required final bool isLoading,
+          required final Option<Either<AppFailure, QuizSuccess>>
+              failureOrSuccessOption,
+          required final Option<List<Quiz>> quizListOption,
+          required final Option<List<Question>> questionListOption}) =
+      _$QuizStateImpl;
   const _QuizState._() : super._();
 
   @override
@@ -325,6 +501,8 @@ abstract class _QuizState extends QuizState {
   Option<Either<AppFailure, QuizSuccess>> get failureOrSuccessOption;
   @override
   Option<List<Quiz>> get quizListOption;
+  @override
+  Option<List<Question>> get questionListOption;
   @override
   @JsonKey(ignore: true)
   _$$QuizStateImplCopyWith<_$QuizStateImpl> get copyWith =>

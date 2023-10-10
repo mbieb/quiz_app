@@ -14,7 +14,8 @@ class Quiz with _$Quiz {
 class Question with _$Question {
   const factory Question({
     String? question,
-    String? correcAnswerId,
+    String? correctAnswerId,
+    String? userAnswerId,
     String? imgUrl,
     List<Answer>? answers,
   }) = _Question;

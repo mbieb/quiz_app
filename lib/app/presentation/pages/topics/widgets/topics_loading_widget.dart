@@ -8,7 +8,7 @@ class TopicsLoadingWidget extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 10,
+      itemCount: 3,
       itemBuilder: (context, index) {
         return Padding(
           padding: padding(vertical: 8),

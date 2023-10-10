@@ -82,7 +82,7 @@ class QuizRemoteDataSource {
       }
       return Question(
         answers: answers,
-        correcAnswerId: question['correctAnswerId'],
+        correctAnswerId: question['correctAnswerId'],
         question: question['question'],
         imgUrl: imgUrl,
       );

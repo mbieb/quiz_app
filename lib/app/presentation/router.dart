@@ -29,8 +29,12 @@ class AppRouter {
         builder: (context, state) => const TopicsPage(),
       ),
       GoRoute(
-        path: quiz,
-        builder: (context, state) => const QuizPage(),
+        path: '$quiz/:mode/:topicId',
+        name: quiz,
+        builder: (context, state) => QuizPage(
+          mode: state.pathParameters['mode'] ?? '',
+          topicId: state.pathParameters['topicId'],
+        ),
       ),
       GoRoute(
         path: result,

@@ -25,7 +25,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     Emitter<QuizState> emit,
   ) async {
     await event.map(
-      started: (event) async {
+      fetchData: (event) async {
         emit(state.loading);
         final failureOrQuizList = await _quizRepository.getData();
         failureOrQuizList.fold(
@@ -45,6 +45,19 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
               ),
               quizListOption: some(success.data),
             ),
+          ),
+        );
+      },
+      started: (event) async {
+        List<Question> questions = [];
+        if (event.mode == "0") {
+          questions = state.getRandomQuestionList;
+        } else {
+          questions = state.getQuestionsByTopicId(event.topicId ?? '');
+        }
+        emit(
+          state.unmodified.copyWith(
+            questionListOption: some(questions),
           ),
         );
       },

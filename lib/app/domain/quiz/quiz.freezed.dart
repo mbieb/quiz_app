@@ -175,7 +175,8 @@ abstract class _Quiz implements Quiz {
 /// @nodoc
 mixin _$Question {
   String? get question => throw _privateConstructorUsedError;
-  String? get correcAnswerId => throw _privateConstructorUsedError;
+  String? get correctAnswerId => throw _privateConstructorUsedError;
+  String? get userAnswerId => throw _privateConstructorUsedError;
   String? get imgUrl => throw _privateConstructorUsedError;
   List<Answer>? get answers => throw _privateConstructorUsedError;
 
@@ -191,7 +192,8 @@ abstract class $QuestionCopyWith<$Res> {
   @useResult
   $Res call(
       {String? question,
-      String? correcAnswerId,
+      String? correctAnswerId,
+      String? userAnswerId,
       String? imgUrl,
       List<Answer>? answers});
 }
@@ -210,7 +212,8 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
   @override
   $Res call({
     Object? question = freezed,
-    Object? correcAnswerId = freezed,
+    Object? correctAnswerId = freezed,
+    Object? userAnswerId = freezed,
     Object? imgUrl = freezed,
     Object? answers = freezed,
   }) {
@@ -219,9 +222,13 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
               as String?,
-      correcAnswerId: freezed == correcAnswerId
-          ? _value.correcAnswerId
-          : correcAnswerId // ignore: cast_nullable_to_non_nullable
+      correctAnswerId: freezed == correctAnswerId
+          ? _value.correctAnswerId
+          : correctAnswerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userAnswerId: freezed == userAnswerId
+          ? _value.userAnswerId
+          : userAnswerId // ignore: cast_nullable_to_non_nullable
               as String?,
       imgUrl: freezed == imgUrl
           ? _value.imgUrl
@@ -245,7 +252,8 @@ abstract class _$$QuestionImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? question,
-      String? correcAnswerId,
+      String? correctAnswerId,
+      String? userAnswerId,
       String? imgUrl,
       List<Answer>? answers});
 }
@@ -262,7 +270,8 @@ class __$$QuestionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? question = freezed,
-    Object? correcAnswerId = freezed,
+    Object? correctAnswerId = freezed,
+    Object? userAnswerId = freezed,
     Object? imgUrl = freezed,
     Object? answers = freezed,
   }) {
@@ -271,9 +280,13 @@ class __$$QuestionImplCopyWithImpl<$Res>
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
               as String?,
-      correcAnswerId: freezed == correcAnswerId
-          ? _value.correcAnswerId
-          : correcAnswerId // ignore: cast_nullable_to_non_nullable
+      correctAnswerId: freezed == correctAnswerId
+          ? _value.correctAnswerId
+          : correctAnswerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userAnswerId: freezed == userAnswerId
+          ? _value.userAnswerId
+          : userAnswerId // ignore: cast_nullable_to_non_nullable
               as String?,
       imgUrl: freezed == imgUrl
           ? _value.imgUrl
@@ -292,7 +305,8 @@ class __$$QuestionImplCopyWithImpl<$Res>
 class _$QuestionImpl implements _Question {
   const _$QuestionImpl(
       {this.question,
-      this.correcAnswerId,
+      this.correctAnswerId,
+      this.userAnswerId,
       this.imgUrl,
       final List<Answer>? answers})
       : _answers = answers;
@@ -300,7 +314,9 @@ class _$QuestionImpl implements _Question {
   @override
   final String? question;
   @override
-  final String? correcAnswerId;
+  final String? correctAnswerId;
+  @override
+  final String? userAnswerId;
   @override
   final String? imgUrl;
   final List<Answer>? _answers;
@@ -315,7 +331,7 @@ class _$QuestionImpl implements _Question {
 
   @override
   String toString() {
-    return 'Question(question: $question, correcAnswerId: $correcAnswerId, imgUrl: $imgUrl, answers: $answers)';
+    return 'Question(question: $question, correctAnswerId: $correctAnswerId, userAnswerId: $userAnswerId, imgUrl: $imgUrl, answers: $answers)';
   }
 
   @override
@@ -325,15 +341,17 @@ class _$QuestionImpl implements _Question {
             other is _$QuestionImpl &&
             (identical(other.question, question) ||
                 other.question == question) &&
-            (identical(other.correcAnswerId, correcAnswerId) ||
-                other.correcAnswerId == correcAnswerId) &&
+            (identical(other.correctAnswerId, correctAnswerId) ||
+                other.correctAnswerId == correctAnswerId) &&
+            (identical(other.userAnswerId, userAnswerId) ||
+                other.userAnswerId == userAnswerId) &&
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
             const DeepCollectionEquality().equals(other._answers, _answers));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, question, correcAnswerId, imgUrl,
-      const DeepCollectionEquality().hash(_answers));
+  int get hashCode => Object.hash(runtimeType, question, correctAnswerId,
+      userAnswerId, imgUrl, const DeepCollectionEquality().hash(_answers));
 
   @JsonKey(ignore: true)
   @override
@@ -345,14 +363,17 @@ class _$QuestionImpl implements _Question {
 abstract class _Question implements Question {
   const factory _Question(
       {final String? question,
-      final String? correcAnswerId,
+      final String? correctAnswerId,
+      final String? userAnswerId,
       final String? imgUrl,
       final List<Answer>? answers}) = _$QuestionImpl;
 
   @override
   String? get question;
   @override
-  String? get correcAnswerId;
+  String? get correctAnswerId;
+  @override
+  String? get userAnswerId;
   @override
   String? get imgUrl;
   @override

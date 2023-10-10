@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/app/application/quiz/quiz_bloc.dart';
 import 'package:quiz_app/app/presentation/router.dart';
+import 'package:quiz_app/config/injection.dart';
 import 'package:quiz_app/config/main/configure.dart';
 import 'package:quiz_app/generated/l10n.dart';
 
@@ -15,6 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: (context, child) {
+        return BlocProvider(
+          create: (context) => getIt<QuizBloc>(),
+          child: child!,
+        );
+      },
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       title: 'MLBB App',

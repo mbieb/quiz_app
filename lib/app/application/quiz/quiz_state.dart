@@ -7,12 +7,14 @@ class QuizState with _$QuizState {
     required bool isLoading,
     required Option<Either<AppFailure, QuizSuccess>> failureOrSuccessOption,
     required Option<List<Quiz>> quizListOption,
+    required Option<List<Question>> questionListOption,
   }) = _QuizState;
 
   factory QuizState.init() => QuizState(
         isLoading: false,
         failureOrSuccessOption: none(),
         quizListOption: none(),
+        questionListOption: none(),
       );
 
   QuizState get unmodified => copyWith(
@@ -24,9 +26,46 @@ class QuizState with _$QuizState {
 
   List<Quiz> get quizList => quizListOption.fold(() => [], (val) => val);
 
-  List<Quiz> get randomQuizList {
-    List<Quiz> data = List.from(quizList);
-    data.shuffle();
-    return data.take(5).toList();
+  List<Question> get questionList =>
+      questionListOption.fold(() => [], (val) => val);
+
+  List<Question> get getRandomQuestionList {
+    List<Question> allQuestions = [];
+
+    for (Quiz quiz in quizList) {
+      if (quiz.questions != null) {
+        allQuestions.addAll(quiz.questions!);
+      }
+    }
+
+    if (allQuestions.isEmpty) {
+      return [];
+    }
+
+    List<Question> shuffledQuestions = List.from(allQuestions)..shuffle();
+
+    List<Question> randomQuestions = shuffledQuestions.take(5).toList();
+
+    return randomQuestions;
+  }
+
+  List<Question> getQuestionsByTopicId(String topicId) {
+    List<Question> questionsInTopic = [];
+
+    for (Quiz quiz in quizList) {
+      if (quiz.topicId == topicId && quiz.questions != null) {
+        questionsInTopic.addAll(quiz.questions!);
+      }
+    }
+
+    if (questionsInTopic.isEmpty) {
+      return [];
+    }
+
+    List<Question> shuffledQuestions = List.from(questionsInTopic)..shuffle();
+
+    List<Question> randomQuestions = shuffledQuestions.take(5).toList();
+
+    return randomQuestions;
   }
 }
