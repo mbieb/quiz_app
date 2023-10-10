@@ -4,6 +4,7 @@ import 'package:quiz_app/app/domain/quiz/quiz.dart';
 import 'package:quiz_app/app/presentation/pages/home/home_page.dart';
 import 'package:quiz_app/app/presentation/pages/quiz/quiz_page.dart';
 import 'package:quiz_app/app/presentation/pages/result/result_page.dart';
+import 'package:quiz_app/app/presentation/pages/splash/splash_screen.dart';
 import 'package:quiz_app/app/presentation/pages/topics/topics_page.dart';
 
 class AppRouter {
@@ -15,11 +16,11 @@ class AppRouter {
   static const String result = '/result';
 
   static final GoRouter _router = GoRouter(
-    initialLocation: home,
+    initialLocation: splashPage,
     routes: [
       GoRoute(
         path: splashPage,
-        builder: (context, state) => Container(),
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: home,
