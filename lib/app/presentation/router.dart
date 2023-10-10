@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/app/domain/quiz/quiz.dart';
 import 'package:quiz_app/app/presentation/pages/home/home_page.dart';
 import 'package:quiz_app/app/presentation/pages/quiz/quiz_page.dart';
 import 'package:quiz_app/app/presentation/pages/result/result_page.dart';
@@ -38,7 +39,8 @@ class AppRouter {
       ),
       GoRoute(
         path: result,
-        builder: (context, state) => const ResultPage(),
+        builder: (context, state) =>
+            ResultPage(questions: state.extra as List<Question>),
       ),
     ],
   );

@@ -302,14 +302,15 @@ class __$$QuestionImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$QuestionImpl implements _Question {
+class _$QuestionImpl extends _Question {
   const _$QuestionImpl(
       {this.question,
       this.correctAnswerId,
       this.userAnswerId,
       this.imgUrl,
       final List<Answer>? answers})
-      : _answers = answers;
+      : _answers = answers,
+        super._();
 
   @override
   final String? question;
@@ -360,13 +361,14 @@ class _$QuestionImpl implements _Question {
       __$$QuestionImplCopyWithImpl<_$QuestionImpl>(this, _$identity);
 }
 
-abstract class _Question implements Question {
+abstract class _Question extends Question {
   const factory _Question(
       {final String? question,
       final String? correctAnswerId,
       final String? userAnswerId,
       final String? imgUrl,
       final List<Answer>? answers}) = _$QuestionImpl;
+  const _Question._() : super._();
 
   @override
   String? get question;

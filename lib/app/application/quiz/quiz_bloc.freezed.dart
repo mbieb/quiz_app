@@ -20,18 +20,22 @@ mixin _$QuizEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String mode, String? topicId) started,
     required TResult Function() fetchData,
+    required TResult Function(int questionIndex, String answerId)
+        answerQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String mode, String? topicId)? started,
     TResult? Function()? fetchData,
+    TResult? Function(int questionIndex, String answerId)? answerQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String mode, String? topicId)? started,
     TResult Function()? fetchData,
+    TResult Function(int questionIndex, String answerId)? answerQuestion,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +43,21 @@ mixin _$QuizEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_AnswerQuestion value) answerQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_AnswerQuestion value)? answerQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_FetchData value)? fetchData,
+    TResult Function(_AnswerQuestion value)? answerQuestion,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +154,8 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(String mode, String? topicId) started,
     required TResult Function() fetchData,
+    required TResult Function(int questionIndex, String answerId)
+        answerQuestion,
   }) {
     return started(mode, topicId);
   }
@@ -156,6 +165,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String mode, String? topicId)? started,
     TResult? Function()? fetchData,
+    TResult? Function(int questionIndex, String answerId)? answerQuestion,
   }) {
     return started?.call(mode, topicId);
   }
@@ -165,6 +175,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String mode, String? topicId)? started,
     TResult Function()? fetchData,
+    TResult Function(int questionIndex, String answerId)? answerQuestion,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -178,6 +189,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_AnswerQuestion value) answerQuestion,
   }) {
     return started(this);
   }
@@ -187,6 +199,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_AnswerQuestion value)? answerQuestion,
   }) {
     return started?.call(this);
   }
@@ -196,6 +209,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_FetchData value)? fetchData,
+    TResult Function(_AnswerQuestion value)? answerQuestion,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -256,6 +270,8 @@ class _$FetchDataImpl implements _FetchData {
   TResult when<TResult extends Object?>({
     required TResult Function(String mode, String? topicId) started,
     required TResult Function() fetchData,
+    required TResult Function(int questionIndex, String answerId)
+        answerQuestion,
   }) {
     return fetchData();
   }
@@ -265,6 +281,7 @@ class _$FetchDataImpl implements _FetchData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String mode, String? topicId)? started,
     TResult? Function()? fetchData,
+    TResult? Function(int questionIndex, String answerId)? answerQuestion,
   }) {
     return fetchData?.call();
   }
@@ -274,6 +291,7 @@ class _$FetchDataImpl implements _FetchData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String mode, String? topicId)? started,
     TResult Function()? fetchData,
+    TResult Function(int questionIndex, String answerId)? answerQuestion,
     required TResult orElse(),
   }) {
     if (fetchData != null) {
@@ -287,6 +305,7 @@ class _$FetchDataImpl implements _FetchData {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_AnswerQuestion value) answerQuestion,
   }) {
     return fetchData(this);
   }
@@ -296,6 +315,7 @@ class _$FetchDataImpl implements _FetchData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_AnswerQuestion value)? answerQuestion,
   }) {
     return fetchData?.call(this);
   }
@@ -305,6 +325,7 @@ class _$FetchDataImpl implements _FetchData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_FetchData value)? fetchData,
+    TResult Function(_AnswerQuestion value)? answerQuestion,
     required TResult orElse(),
   }) {
     if (fetchData != null) {
@@ -316,6 +337,161 @@ class _$FetchDataImpl implements _FetchData {
 
 abstract class _FetchData implements QuizEvent {
   const factory _FetchData() = _$FetchDataImpl;
+}
+
+/// @nodoc
+abstract class _$$AnswerQuestionImplCopyWith<$Res> {
+  factory _$$AnswerQuestionImplCopyWith(_$AnswerQuestionImpl value,
+          $Res Function(_$AnswerQuestionImpl) then) =
+      __$$AnswerQuestionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int questionIndex, String answerId});
+}
+
+/// @nodoc
+class __$$AnswerQuestionImplCopyWithImpl<$Res>
+    extends _$QuizEventCopyWithImpl<$Res, _$AnswerQuestionImpl>
+    implements _$$AnswerQuestionImplCopyWith<$Res> {
+  __$$AnswerQuestionImplCopyWithImpl(
+      _$AnswerQuestionImpl _value, $Res Function(_$AnswerQuestionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionIndex = null,
+    Object? answerId = null,
+  }) {
+    return _then(_$AnswerQuestionImpl(
+      questionIndex: null == questionIndex
+          ? _value.questionIndex
+          : questionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      answerId: null == answerId
+          ? _value.answerId
+          : answerId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AnswerQuestionImpl implements _AnswerQuestion {
+  const _$AnswerQuestionImpl(
+      {required this.questionIndex, required this.answerId});
+
+  @override
+  final int questionIndex;
+  @override
+  final String answerId;
+
+  @override
+  String toString() {
+    return 'QuizEvent.answerQuestion(questionIndex: $questionIndex, answerId: $answerId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AnswerQuestionImpl &&
+            (identical(other.questionIndex, questionIndex) ||
+                other.questionIndex == questionIndex) &&
+            (identical(other.answerId, answerId) ||
+                other.answerId == answerId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, questionIndex, answerId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AnswerQuestionImplCopyWith<_$AnswerQuestionImpl> get copyWith =>
+      __$$AnswerQuestionImplCopyWithImpl<_$AnswerQuestionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String mode, String? topicId) started,
+    required TResult Function() fetchData,
+    required TResult Function(int questionIndex, String answerId)
+        answerQuestion,
+  }) {
+    return answerQuestion(questionIndex, answerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String mode, String? topicId)? started,
+    TResult? Function()? fetchData,
+    TResult? Function(int questionIndex, String answerId)? answerQuestion,
+  }) {
+    return answerQuestion?.call(questionIndex, answerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String mode, String? topicId)? started,
+    TResult Function()? fetchData,
+    TResult Function(int questionIndex, String answerId)? answerQuestion,
+    required TResult orElse(),
+  }) {
+    if (answerQuestion != null) {
+      return answerQuestion(questionIndex, answerId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_AnswerQuestion value) answerQuestion,
+  }) {
+    return answerQuestion(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_AnswerQuestion value)? answerQuestion,
+  }) {
+    return answerQuestion?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_FetchData value)? fetchData,
+    TResult Function(_AnswerQuestion value)? answerQuestion,
+    required TResult orElse(),
+  }) {
+    if (answerQuestion != null) {
+      return answerQuestion(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AnswerQuestion implements QuizEvent {
+  const factory _AnswerQuestion(
+      {required final int questionIndex,
+      required final String answerId}) = _$AnswerQuestionImpl;
+
+  int get questionIndex;
+  String get answerId;
+  @JsonKey(ignore: true)
+  _$$AnswerQuestionImplCopyWith<_$AnswerQuestionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

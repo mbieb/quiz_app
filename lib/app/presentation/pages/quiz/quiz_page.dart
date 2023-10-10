@@ -1,14 +1,20 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/app/application/quiz/quiz_bloc.dart';
+import 'package:quiz_app/app/domain/quiz/quiz.dart';
 import 'package:quiz_app/app/presentation/constants/colors.dart';
 import 'package:quiz_app/app/presentation/constants/dimens.dart';
 import 'package:quiz_app/app/presentation/constants/text_style.dart';
 import 'package:quiz_app/app/presentation/helpers/ui_helper.dart';
+import 'package:quiz_app/app/presentation/router.dart';
 import 'package:quiz_app/app/presentation/widgets/app_scaffold.dart';
 import 'package:quiz_app/generated/l10n.dart';
+
+part './widgets/questions_item.dart';
 
 class QuizPage extends StatelessWidget {
   final String mode;
@@ -41,9 +47,19 @@ class _QuizBodyPage extends StatefulWidget {
 }
 
 class _QuizBodyPageState extends State<_QuizBodyPage> {
+  final PageController _controller = PageController();
+  late Timer _timer;
+  int _seconds = 30;
+  final int _totalSeconds = 30;
+  int _currentPage = 0;
+  bool _isFinished = false;
+  late QuizBloc bloc;
+
   @override
   void initState() {
     super.initState();
+
+    bloc = BlocProvider.of<QuizBloc>(context);
 
     BlocProvider.of<QuizBloc>(context).add(
       QuizEvent.started(
@@ -51,11 +67,58 @@ class _QuizBodyPageState extends State<_QuizBodyPage> {
         topicId: widget.topicId,
       ),
     );
+
+    _controller.addListener(_updateCurrentPage);
+
+    _startTimer();
+  }
+
+  void _updateCurrentPage() {
+    setState(() {
+      _currentPage = _controller.page!.round();
+    });
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_seconds > 0) {
+          _seconds--;
+        } else {
+          _goToNextPage();
+
+          _resetTimerAndCheckLastPage();
+        }
+      });
+    });
+  }
+
+  void _goToNextPage() {
+    _controller.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _resetTimerAndCheckLastPage() {
+    if (_currentPage == 4 && _seconds == 0 || _isFinished) {
+      _timer.cancel();
+      context.pushReplacement(AppRouter.result, extra: bloc.state.questionList);
+    }
+    _seconds = _totalSeconds;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+    _timer.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
+
     return BlocBuilder<QuizBloc, QuizState>(
       builder: (context, state) {
         return AppScaffold(
@@ -77,68 +140,52 @@ class _QuizBodyPageState extends State<_QuizBodyPage> {
               i10n.quizPage,
               style: cTextAccentMed,
             ),
+            actions: [
+              GestureDetector(
+                onTap: () {
+                  context.pop();
+                },
+                child: Padding(
+                  padding: padding(right: 16),
+                  child: Center(
+                    child: Text(
+                      ('Exit'),
+                      style: cTextAccentMed,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           body: PageView(
+            controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
             children: state.questionList
+                .asMap()
+                .entries
                 .map(
-                  (e) => Column(
-                    children: [
-                      LinearProgressIndicator(
-                        color: Colors.amber,
-                        minHeight: 4,
-                        value: 1,
-                      ),
-                      ListView(
-                        padding: padding(all: Sizes.p16),
-                        shrinkWrap: true,
-                        children: [
-                          Container(
-                            padding: padding(all: Sizes.p16),
-                            decoration: BoxDecoration(
-                              color: cColorWhite,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  e.question ?? '',
-                                  style: cTextBold,
-                                  textAlign: TextAlign.center,
-                                ),
-                                if (e.imgUrl?.isNotEmpty == true)
-                                  Padding(
-                                    padding: padding(vertical: 8),
-                                    child: CachedNetworkImage(
-                                      imageUrl: e.imgUrl ?? '',
-                                      fit: BoxFit.cover,
-                                      height: 200,
-                                    ),
-                                  ),
-                              ],
-                            ),
-                          ),
-                          gapH16,
-                          ...e.answers
-                                  ?.map((e) => ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: cColorWhite,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(16)),
-                                        ),
-                                        onPressed: () {},
-                                        child: Text(
-                                          e.text ?? '',
-                                          style: cTextRegSM,
-                                        ),
-                                      ))
-                                  .toList() ??
-                              [],
-                        ],
-                      ),
-                    ],
+                  (data) => _QuestionItem(
+                    data: data,
+                    seconds: _seconds,
+                    totalSeconds: _totalSeconds,
+                    currentPage: data.key + 1,
+                    totalPage: state.questionList.length,
+                    onPressedAnswer: (String answerId) {
+                      bloc.add(
+                        QuizEvent.answerQuestion(
+                            questionIndex: data.key, answerId: answerId),
+                      );
+
+                      Future.delayed(const Duration(seconds: 2), () {
+                        if (data.key == state.questionList.length - 1) {
+                          setState(() {
+                            _isFinished = true;
+                          });
+                        }
+                        _goToNextPage();
+                        _resetTimerAndCheckLastPage();
+                      });
+                    },
                   ),
                 )
                 .toList(),

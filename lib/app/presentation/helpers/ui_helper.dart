@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/app/domain/quiz/quiz.dart';
 
 Widget verticalSpace(double height) {
   return SizedBox(height: height);
@@ -55,4 +56,10 @@ void unfocusAll(BuildContext context) {
 
 String customNumberFormat(int val) {
   return '#${val.toString().padLeft(3, '0')}';
+}
+
+int getCorrectAnswer(List<Question> questions) {
+  return questions
+      .where((element) => element.userAnswerId == element.correctAnswerId)
+      .length;
 }

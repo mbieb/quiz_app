@@ -61,6 +61,22 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           ),
         );
       },
+      answerQuestion: (event) async {
+        List<Question> questions = List.from(state.questionList);
+        if (event.questionIndex >= 0 &&
+            event.questionIndex < questions.length) {
+          questions[event.questionIndex] =
+              questions[event.questionIndex].copyWith(
+            userAnswerId: event.answerId,
+          );
+
+          emit(
+            state.unmodified.copyWith(
+              questionListOption: some(questions),
+            ),
+          );
+        }
+      },
     );
   }
 }

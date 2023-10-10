@@ -7,4 +7,8 @@ class QuizEvent with _$QuizEvent {
     String? topicId,
   }) = _Started;
   const factory QuizEvent.fetchData() = _FetchData;
+  const factory QuizEvent.answerQuestion({
+    required int questionIndex,
+    required String answerId,
+  }) = _AnswerQuestion;
 }
