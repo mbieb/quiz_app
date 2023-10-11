@@ -62,4 +62,4 @@ Quiz App adalah aplikasi kuis yang dibangun dengan flutter framework. Dalam peng
 * cached_network_image: untuk Memuat dan menyimpan sementara gambar dari URL dengan efisiensi cache.
 
 
-<img src="ss1.png" width="200">  <img src="ss2.png" width="200">  <img src="ss3.png" width="200">  <img src="ss4.png" width="200">  <img src="ss5.png" width="200">  <img src="ss6.png" width="200">  <img src="ss7.png" width="200">  <img src="ss8.png" width="200">  <img src="ss9.png" width="200">  <img src="ss10.png" width="200">
+<img src="ss1.png" width="200">  <img src="ss2.png" width="200">  <img src="ss3.png" width="200">  <img src="ss4.png" width="200">  <img src="ss5.png" width="200">  <img src="ss6.png" width="200">  <img src="ss7.png" width="200">  <img src="ss8.png" width="200">

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
-      title: 'MLBB App',
+      title: 'Quiz App',
       // theme: cThemeLight,
       localizationsDelegates: const [
         I10n.delegate,
