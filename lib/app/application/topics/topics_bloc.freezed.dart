@@ -19,32 +19,38 @@ mixin _$TopicsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String topic) searchTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String topic)? searchTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String topic)? searchTopics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_SearchTopic value) searchTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_SearchTopic value)? searchTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_SearchTopic value)? searchTopics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String topic) searchTopics,
   }) {
     return started();
   }
@@ -115,6 +122,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String topic)? searchTopics,
   }) {
     return started?.call();
   }
@@ -123,6 +131,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String topic)? searchTopics,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -135,6 +144,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_SearchTopic value) searchTopics,
   }) {
     return started(this);
   }
@@ -143,6 +153,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_SearchTopic value)? searchTopics,
   }) {
     return started?.call(this);
   }
@@ -151,6 +162,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_SearchTopic value)? searchTopics,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -165,11 +177,146 @@ abstract class _Started implements TopicsEvent {
 }
 
 /// @nodoc
+abstract class _$$SearchTopicImplCopyWith<$Res> {
+  factory _$$SearchTopicImplCopyWith(
+          _$SearchTopicImpl value, $Res Function(_$SearchTopicImpl) then) =
+      __$$SearchTopicImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String topic});
+}
+
+/// @nodoc
+class __$$SearchTopicImplCopyWithImpl<$Res>
+    extends _$TopicsEventCopyWithImpl<$Res, _$SearchTopicImpl>
+    implements _$$SearchTopicImplCopyWith<$Res> {
+  __$$SearchTopicImplCopyWithImpl(
+      _$SearchTopicImpl _value, $Res Function(_$SearchTopicImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topic = null,
+  }) {
+    return _then(_$SearchTopicImpl(
+      null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchTopicImpl implements _SearchTopic {
+  const _$SearchTopicImpl(this.topic);
+
+  @override
+  final String topic;
+
+  @override
+  String toString() {
+    return 'TopicsEvent.searchTopics(topic: $topic)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchTopicImpl &&
+            (identical(other.topic, topic) || other.topic == topic));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, topic);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchTopicImplCopyWith<_$SearchTopicImpl> get copyWith =>
+      __$$SearchTopicImplCopyWithImpl<_$SearchTopicImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String topic) searchTopics,
+  }) {
+    return searchTopics(topic);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String topic)? searchTopics,
+  }) {
+    return searchTopics?.call(topic);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String topic)? searchTopics,
+    required TResult orElse(),
+  }) {
+    if (searchTopics != null) {
+      return searchTopics(topic);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SearchTopic value) searchTopics,
+  }) {
+    return searchTopics(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SearchTopic value)? searchTopics,
+  }) {
+    return searchTopics?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SearchTopic value)? searchTopics,
+    required TResult orElse(),
+  }) {
+    if (searchTopics != null) {
+      return searchTopics(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchTopic implements TopicsEvent {
+  const factory _SearchTopic(final String topic) = _$SearchTopicImpl;
+
+  String get topic;
+  @JsonKey(ignore: true)
+  _$$SearchTopicImplCopyWith<_$SearchTopicImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$TopicsState {
   bool get isLoading => throw _privateConstructorUsedError;
   Option<Either<AppFailure, TopicsSuccess>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
   Option<List<Topics>> get topicsOption => throw _privateConstructorUsedError;
+  Option<List<Topics>> get topicsSearchOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TopicsStateCopyWith<TopicsState> get copyWith =>
@@ -185,7 +332,8 @@ abstract class $TopicsStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       Option<Either<AppFailure, TopicsSuccess>> failureOrSuccessOption,
-      Option<List<Topics>> topicsOption});
+      Option<List<Topics>> topicsOption,
+      Option<List<Topics>> topicsSearchOption});
 }
 
 /// @nodoc
@@ -204,6 +352,7 @@ class _$TopicsStateCopyWithImpl<$Res, $Val extends TopicsState>
     Object? isLoading = null,
     Object? failureOrSuccessOption = null,
     Object? topicsOption = null,
+    Object? topicsSearchOption = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -217,6 +366,10 @@ class _$TopicsStateCopyWithImpl<$Res, $Val extends TopicsState>
       topicsOption: null == topicsOption
           ? _value.topicsOption
           : topicsOption // ignore: cast_nullable_to_non_nullable
+              as Option<List<Topics>>,
+      topicsSearchOption: null == topicsSearchOption
+          ? _value.topicsSearchOption
+          : topicsSearchOption // ignore: cast_nullable_to_non_nullable
               as Option<List<Topics>>,
     ) as $Val);
   }
@@ -233,7 +386,8 @@ abstract class _$$TopicsStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       Option<Either<AppFailure, TopicsSuccess>> failureOrSuccessOption,
-      Option<List<Topics>> topicsOption});
+      Option<List<Topics>> topicsOption,
+      Option<List<Topics>> topicsSearchOption});
 }
 
 /// @nodoc
@@ -250,6 +404,7 @@ class __$$TopicsStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? failureOrSuccessOption = null,
     Object? topicsOption = null,
+    Object? topicsSearchOption = null,
   }) {
     return _then(_$TopicsStateImpl(
       isLoading: null == isLoading
@@ -264,6 +419,10 @@ class __$$TopicsStateImplCopyWithImpl<$Res>
           ? _value.topicsOption
           : topicsOption // ignore: cast_nullable_to_non_nullable
               as Option<List<Topics>>,
+      topicsSearchOption: null == topicsSearchOption
+          ? _value.topicsSearchOption
+          : topicsSearchOption // ignore: cast_nullable_to_non_nullable
+              as Option<List<Topics>>,
     ));
   }
 }
@@ -274,7 +433,8 @@ class _$TopicsStateImpl extends _TopicsState {
   const _$TopicsStateImpl(
       {required this.isLoading,
       required this.failureOrSuccessOption,
-      required this.topicsOption})
+      required this.topicsOption,
+      required this.topicsSearchOption})
       : super._();
 
   @override
@@ -283,10 +443,12 @@ class _$TopicsStateImpl extends _TopicsState {
   final Option<Either<AppFailure, TopicsSuccess>> failureOrSuccessOption;
   @override
   final Option<List<Topics>> topicsOption;
+  @override
+  final Option<List<Topics>> topicsSearchOption;
 
   @override
   String toString() {
-    return 'TopicsState(isLoading: $isLoading, failureOrSuccessOption: $failureOrSuccessOption, topicsOption: $topicsOption)';
+    return 'TopicsState(isLoading: $isLoading, failureOrSuccessOption: $failureOrSuccessOption, topicsOption: $topicsOption, topicsSearchOption: $topicsSearchOption)';
   }
 
   @override
@@ -299,12 +461,14 @@ class _$TopicsStateImpl extends _TopicsState {
             (identical(other.failureOrSuccessOption, failureOrSuccessOption) ||
                 other.failureOrSuccessOption == failureOrSuccessOption) &&
             (identical(other.topicsOption, topicsOption) ||
-                other.topicsOption == topicsOption));
+                other.topicsOption == topicsOption) &&
+            (identical(other.topicsSearchOption, topicsSearchOption) ||
+                other.topicsSearchOption == topicsSearchOption));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, failureOrSuccessOption, topicsOption);
+  int get hashCode => Object.hash(runtimeType, isLoading,
+      failureOrSuccessOption, topicsOption, topicsSearchOption);
 
   @JsonKey(ignore: true)
   @override
@@ -315,10 +479,12 @@ class _$TopicsStateImpl extends _TopicsState {
 
 abstract class _TopicsState extends TopicsState {
   const factory _TopicsState(
-      {required final bool isLoading,
-      required final Option<Either<AppFailure, TopicsSuccess>>
-          failureOrSuccessOption,
-      required final Option<List<Topics>> topicsOption}) = _$TopicsStateImpl;
+          {required final bool isLoading,
+          required final Option<Either<AppFailure, TopicsSuccess>>
+              failureOrSuccessOption,
+          required final Option<List<Topics>> topicsOption,
+          required final Option<List<Topics>> topicsSearchOption}) =
+      _$TopicsStateImpl;
   const _TopicsState._() : super._();
 
   @override
@@ -327,6 +493,8 @@ abstract class _TopicsState extends TopicsState {
   Option<Either<AppFailure, TopicsSuccess>> get failureOrSuccessOption;
   @override
   Option<List<Topics>> get topicsOption;
+  @override
+  Option<List<Topics>> get topicsSearchOption;
   @override
   @JsonKey(ignore: true)
   _$$TopicsStateImplCopyWith<_$TopicsStateImpl> get copyWith =>

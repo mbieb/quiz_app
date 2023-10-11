@@ -36,6 +36,7 @@ class _TopicsBodyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
+    var bloc = BlocProvider.of<TopicsBloc>(context);
     return BlocConsumer<TopicsBloc, TopicsState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -61,15 +62,19 @@ class _TopicsBodyPage extends StatelessWidget {
           body: ListView(
             padding: padding(horizontal: Sizes.p16, vertical: Sizes.p24),
             children: [
-              PrimarySearchField(),
+              PrimarySearchField(
+                onChanged: (value) {
+                  bloc.add(TopicsEvent.searchTopics(value));
+                },
+              ),
               state.isLoading
                   ? const TopicsLoadingWidget()
                   : ListView.builder(
                       primary: false,
                       shrinkWrap: true,
-                      itemCount: state.topicList.length,
+                      itemCount: state.topicSearchList.length,
                       itemBuilder: (context, index) {
-                        var data = state.topicList[index];
+                        var data = state.topicSearchList[index];
                         return _TopicsItem(data: data);
                       },
                     )

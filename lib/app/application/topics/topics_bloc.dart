@@ -24,28 +24,46 @@ class TopicsBloc extends Bloc<TopicsEvent, TopicsState> {
     TopicsEvent event,
     Emitter<TopicsState> emit,
   ) async {
-    await event.map(started: (event) async {
-      emit(state.loading);
-      final failureOrTopicList = await _topicsRepository.getData();
-      failureOrTopicList.fold(
-        (l) => emit(
-          state.unmodified.copyWith(
-            failureOrSuccessOption: some(
-              left(l),
-            ),
-          ),
-        ),
-        (success) => emit(
-          state.unmodified.copyWith(
-            failureOrSuccessOption: some(
-              right(
-                TopicsSuccess(success.data),
+    await event.map(
+      started: (event) async {
+        emit(state.loading);
+        final failureOrTopicList = await _topicsRepository.getData();
+        failureOrTopicList.fold(
+          (l) => emit(
+            state.unmodified.copyWith(
+              failureOrSuccessOption: some(
+                left(l),
               ),
             ),
-            topicsOption: some(success.data),
           ),
-        ),
-      );
-    });
+          (success) => emit(
+            state.unmodified.copyWith(
+              failureOrSuccessOption: some(
+                right(
+                  TopicsSuccess(success.data),
+                ),
+              ),
+              topicsOption: some(success.data),
+              topicsSearchOption: some(success.data),
+            ),
+          ),
+        );
+      },
+      searchTopics: (event) async {
+        List<Topics> searchResult = state.topicList
+            .where((element) =>
+                element.name
+                    ?.toLowerCase()
+                    .contains(event.topic.toLowerCase()) ??
+                false)
+            .toList();
+
+        emit(
+          state.unmodified.copyWith(
+            topicsSearchOption: some(searchResult),
+          ),
+        );
+      },
+    );
   }
 }
