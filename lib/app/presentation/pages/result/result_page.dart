@@ -7,6 +7,7 @@ import 'package:quiz_app/app/presentation/constants/text_style.dart';
 import 'package:quiz_app/app/presentation/helpers/ui_helper.dart';
 import 'package:quiz_app/app/presentation/widgets/app_scaffold.dart';
 import 'package:quiz_app/generated/l10n.dart';
+import 'package:share_plus/share_plus.dart';
 
 part './widgets/result_question_item.dart';
 
@@ -29,12 +30,13 @@ class _ResultBodyPage extends StatelessWidget {
   final List<Question> questions;
   const _ResultBodyPage({
     required this.questions,
-    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
+    var _scoreTextValue = getCorrectAnswer(questions) / questions.length;
+    var _scoreText = '${getCorrectAnswer(questions)} / ${questions.length}';
     return AppScaffold(
       backgroundColor: cColorPrimary,
       appBar: AppBar(
@@ -61,8 +63,8 @@ class _ResultBodyPage extends StatelessWidget {
             children: [
               gapH12,
               Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(100),
                   ),
                 ),
@@ -74,7 +76,7 @@ class _ResultBodyPage extends StatelessWidget {
                       height: 85,
                       child: CircularProgressIndicator(
                         backgroundColor: Colors.red,
-                        value: (getCorrectAnswer(questions)) / questions.length,
+                        value: _scoreTextValue,
                         valueColor: const AlwaysStoppedAnimation<Color>(
                           Colors.green,
                         ),
@@ -83,7 +85,7 @@ class _ResultBodyPage extends StatelessWidget {
                     ),
                     FittedBox(
                       child: Text(
-                        '${getCorrectAnswer(questions)}/${questions.length}',
+                        _scoreText,
                         style: cTextAccentReg,
                       ),
                     )
@@ -92,7 +94,11 @@ class _ResultBodyPage extends StatelessWidget {
               ),
               gapH16,
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Share.share(
+                    i10n.shareScoreText(_scoreText),
+                  );
+                },
                 child: Text(i10n.shareYourScore),
               ),
               gapH12,

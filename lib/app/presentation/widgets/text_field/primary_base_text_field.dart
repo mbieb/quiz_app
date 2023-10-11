@@ -106,33 +106,3 @@ class PrimaryBaseTextField extends StatelessWidget {
     );
   }
 }
-
-class _TextFieldFooter extends StatelessWidget {
-  final String? iconPath;
-  final Widget title;
-  final EdgeInsets? margin;
-  const _TextFieldFooter({
-    Key? key,
-    this.iconPath = '',
-    required this.title,
-    this.margin,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? padding(top: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: DefaultTextStyle(
-              style: const TextStyle(height: 1.7),
-              child: title,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

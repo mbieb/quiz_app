@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/app/domain/quiz/quiz.dart';
+import 'package:quiz_app/app/presentation/constants/dimens.dart';
+import 'package:quiz_app/app/presentation/constants/text_style.dart';
 
 Widget verticalSpace(double height) {
   return SizedBox(height: height);
@@ -62,4 +64,31 @@ int getCorrectAnswer(List<Question> questions) {
   return questions
       .where((element) => element.userAnswerId == element.correctAnswerId)
       .length;
+}
+
+void showShareBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          // Customize the bottom sheet content here
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                'Share',
+                style: cTextReg,
+              ),
+              gapH16,
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close the bottom sheet
+                },
+                child: Text('Close'),
+              ),
+            ],
+          ),
+        );
+      });
 }

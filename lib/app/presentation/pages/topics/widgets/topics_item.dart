@@ -4,7 +4,6 @@ class _TopicsItem extends StatelessWidget {
   final Topics data;
   const _TopicsItem({
     required this.data,
-    super.key,
   });
 
   @override

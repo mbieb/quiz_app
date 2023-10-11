@@ -11,6 +11,7 @@ import 'package:quiz_app/app/presentation/constants/dimens.dart';
 import 'package:quiz_app/app/presentation/constants/text_style.dart';
 import 'package:quiz_app/app/presentation/helpers/ui_helper.dart';
 import 'package:quiz_app/app/presentation/router.dart';
+import 'package:quiz_app/app/presentation/widgets/alert.dart';
 import 'package:quiz_app/app/presentation/widgets/app_scaffold.dart';
 import 'package:quiz_app/generated/l10n.dart';
 
@@ -73,6 +74,24 @@ class _QuizBodyPageState extends State<_QuizBodyPage> {
     _startTimer();
   }
 
+  Future<bool> _onWillPopScope(BuildContext context, I10n i10n) async {
+    _showAlertQuit(i10n);
+    return true;
+  }
+
+  void _showAlertQuit(I10n i10n) {
+    Alert.option(
+      context: context,
+      title: i10n.alertConfirm,
+      body: i10n.alertQuitGame,
+      positiveText: i10n.yes,
+      cancelTextColor: Colors.black,
+      positiveAction: () {
+        context.pop();
+      },
+    );
+  }
+
   void _updateCurrentPage() {
     setState(() {
       _currentPage = _controller.page!.round();
@@ -121,74 +140,77 @@ class _QuizBodyPageState extends State<_QuizBodyPage> {
 
     return BlocBuilder<QuizBloc, QuizState>(
       builder: (context, state) {
-        return AppScaffold(
-          isLoading: state.isLoading,
-          backgroundColor: cColorPrimary,
-          appBar: AppBar(
+        return WillPopScope(
+          onWillPop: () async => _onWillPopScope(context, i10n),
+          child: AppScaffold(
+            isLoading: state.isLoading,
             backgroundColor: cColorPrimary,
-            centerTitle: true,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                size: 22,
-              ),
-              onPressed: () {
-                context.pop();
-              },
-            ),
-            title: Text(
-              i10n.quizPage,
-              style: cTextAccentMed,
-            ),
-            actions: [
-              GestureDetector(
-                onTap: () {
-                  context.pop();
+            appBar: AppBar(
+              backgroundColor: cColorPrimary,
+              centerTitle: true,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  size: 22,
+                ),
+                onPressed: () {
+                  _showAlertQuit(i10n);
                 },
-                child: Padding(
-                  padding: padding(right: 16),
-                  child: Center(
-                    child: Text(
-                      ('Exit'),
-                      style: cTextAccentMed,
+              ),
+              title: Text(
+                i10n.quizPage,
+                style: cTextAccentMed,
+              ),
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    _showAlertQuit(i10n);
+                  },
+                  child: Padding(
+                    padding: padding(right: 16),
+                    child: Center(
+                      child: Text(
+                        ('Exit'),
+                        style: cTextAccentMed,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          body: PageView(
-            controller: _controller,
-            physics: const NeverScrollableScrollPhysics(),
-            children: state.questionList
-                .asMap()
-                .entries
-                .map(
-                  (data) => _QuestionItem(
-                    data: data,
-                    seconds: _seconds,
-                    totalSeconds: _totalSeconds,
-                    currentPage: data.key + 1,
-                    totalPage: state.questionList.length,
-                    onPressedAnswer: (String answerId) {
-                      bloc.add(
-                        QuizEvent.answerQuestion(
-                            questionIndex: data.key, answerId: answerId),
-                      );
+              ],
+            ),
+            body: PageView(
+              controller: _controller,
+              physics: const NeverScrollableScrollPhysics(),
+              children: state.questionList
+                  .asMap()
+                  .entries
+                  .map(
+                    (data) => _QuestionItem(
+                      data: data,
+                      seconds: _seconds,
+                      totalSeconds: _totalSeconds,
+                      currentPage: data.key + 1,
+                      totalPage: state.questionList.length,
+                      onPressedAnswer: (String answerId) {
+                        bloc.add(
+                          QuizEvent.answerQuestion(
+                              questionIndex: data.key, answerId: answerId),
+                        );
 
-                      Future.delayed(const Duration(seconds: 2), () {
-                        if (data.key == state.questionList.length - 1) {
-                          setState(() {
-                            _isFinished = true;
-                          });
-                        }
-                        _goToNextPage();
-                        _resetTimerAndCheckLastPage();
-                      });
-                    },
-                  ),
-                )
-                .toList(),
+                        Future.delayed(const Duration(seconds: 2), () {
+                          if (data.key == state.questionList.length - 1) {
+                            setState(() {
+                              _isFinished = true;
+                            });
+                          }
+                          _goToNextPage();
+                          _resetTimerAndCheckLastPage();
+                        });
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         );
       },

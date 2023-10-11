@@ -31,15 +31,13 @@ class TopicsPage extends StatelessWidget {
 }
 
 class _TopicsBodyPage extends StatelessWidget {
-  const _TopicsBodyPage({super.key});
+  const _TopicsBodyPage();
 
   @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
     return BlocConsumer<TopicsBloc, TopicsState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return AppScaffold(
           backgroundColor: cColorPrimary,

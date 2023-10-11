@@ -10,6 +10,7 @@
     "alertOk": "Ok",
     "alertLogout": "Are you sure you want to log out?",
     "alertQuit": "Are you sure you want to quit the app?",
+    "alertQuitGame": "Are you sure you want to quit the game?",
     "play": "Play",
     "topics": "Topics",
     "share": "Share",
@@ -17,5 +18,8 @@
     "quizPage": "Quiz Page",
     "yourScore": "Your Score",
     "yourReport": "Your Report",
-    "shareYourScore": "Share Your Score"
+    "yes": "Yes",
+    "shareYourScore": "Share Your Score",
+    "shareAppText": "Hello friends! I just made a super fun quiz!. Come along and test your knowledge! 🚀\n\nhttps://mutha-arif.netlify.app/",
+    "shareScoreText": "Hello friends! I just got a score of {val} in the Quiz App game, lets play together!\n\nhttps://mutha-arif.netlify.app/"
 }

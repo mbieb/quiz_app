@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/app/domain/quiz/quiz.dart';
 import 'package:quiz_app/app/presentation/pages/home/home_page.dart';

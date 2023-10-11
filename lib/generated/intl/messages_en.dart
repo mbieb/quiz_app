@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(val) =>
+      "Hello friends! I just got a score of ${val} in the Quiz App game, lets play together!\n\nhttps://mutha-arif.netlify.app/";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alertCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -32,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alertOk": MessageLookupByLibrary.simpleMessage("Ok"),
         "alertQuit": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to quit the app?"),
+        "alertQuitGame": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to quit the game?"),
         "alertTimeOut":
             MessageLookupByLibrary.simpleMessage("Request time out"),
         "alertWarning": MessageLookupByLibrary.simpleMessage("Warning"),
@@ -42,9 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "quizPage": MessageLookupByLibrary.simpleMessage("Quiz Page"),
         "rateUs": MessageLookupByLibrary.simpleMessage("Rate Us"),
         "share": MessageLookupByLibrary.simpleMessage("Share"),
+        "shareAppText": MessageLookupByLibrary.simpleMessage(
+            "Hello friends! I just made a super fun quiz!. Come along and test your knowledge! 🚀\n\nhttps://mutha-arif.netlify.app/"),
+        "shareScoreText": m0,
         "shareYourScore":
             MessageLookupByLibrary.simpleMessage("Share Your Score"),
         "topics": MessageLookupByLibrary.simpleMessage("Topics"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "yourReport": MessageLookupByLibrary.simpleMessage("Your Report"),
         "yourScore": MessageLookupByLibrary.simpleMessage("Your Score")
       };

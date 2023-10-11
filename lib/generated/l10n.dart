@@ -160,6 +160,16 @@ class I10n {
     );
   }
 
+  /// `Are you sure you want to quit the game?`
+  String get alertQuitGame {
+    return Intl.message(
+      'Are you sure you want to quit the game?',
+      name: 'alertQuitGame',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Play`
   String get play {
     return Intl.message(
@@ -230,6 +240,16 @@ class I10n {
     );
   }
 
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Share Your Score`
   String get shareYourScore {
     return Intl.message(
@@ -237,6 +257,26 @@ class I10n {
       name: 'shareYourScore',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Hello friends! I just made a super fun quiz!. Come along and test your knowledge! 🚀\n\nhttps://mutha-arif.netlify.app/`
+  String get shareAppText {
+    return Intl.message(
+      'Hello friends! I just made a super fun quiz!. Come along and test your knowledge! 🚀\n\nhttps://mutha-arif.netlify.app/',
+      name: 'shareAppText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello friends! I just got a score of {val} in the Quiz App game, lets play together!\n\nhttps://mutha-arif.netlify.app/`
+  String shareScoreText(Object val) {
+    return Intl.message(
+      'Hello friends! I just got a score of $val in the Quiz App game, lets play together!\n\nhttps://mutha-arif.netlify.app/',
+      name: 'shareScoreText',
+      desc: '',
+      args: [val],
     );
   }
 }

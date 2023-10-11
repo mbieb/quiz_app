@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
               (failure) => failure.maybeWhen(
                     orElse: () => appFailureHandler(failure, context),
                   ), (r) {
-            context.push(AppRouter.home);
+            context.go(AppRouter.home);
           }),
         );
       },
