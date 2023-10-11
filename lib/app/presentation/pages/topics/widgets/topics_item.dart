@@ -35,7 +35,15 @@ class _TopicsItem extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(
+                  AppRouter.quiz,
+                  pathParameters: {
+                    'mode': "1",
+                    'topicId': data.id ?? '',
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.play_arrow,
                 color: cColorWhite,
