@@ -13,6 +13,7 @@ import 'package:quiz_app/app/presentation/widgets/button/primary_button.dart';
 import 'package:quiz_app/app/presentation/widgets/button/secondary_button.dart';
 import 'package:quiz_app/generated/l10n.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -113,6 +114,10 @@ class _HomeBodyPage extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        launchUrlString('https://mutha-arif.netlify.app/',
+                            mode: LaunchMode.externalNonBrowserApplication);
+                      },
                       child: Row(
                         children: [
                           const Icon(
