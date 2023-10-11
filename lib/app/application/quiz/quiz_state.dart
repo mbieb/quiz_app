@@ -30,13 +30,10 @@ class QuizState with _$QuizState {
       questionListOption.fold(() => [], (val) => val);
 
   List<Question> get getRandomQuestionList {
-    List<Question> allQuestions = [];
-
-    for (Quiz quiz in quizList) {
-      if (quiz.questions != null) {
-        allQuestions.addAll(quiz.questions!);
-      }
-    }
+    List<Question> allQuestions = quizList
+        .where((quiz) => quiz.questions != null)
+        .expand((quiz) => quiz.questions!)
+        .toList();
 
     if (allQuestions.isEmpty) {
       return [];
@@ -46,7 +43,17 @@ class QuizState with _$QuizState {
 
     List<Question> randomQuestions = shuffledQuestions.take(5).toList();
 
-    return randomQuestions;
+    List<Question> questions = randomQuestions
+        .map((element) => Question(
+              correctAnswerId: element.correctAnswerId,
+              imgUrl: element.imgUrl,
+              question: element.question,
+              userAnswerId: element.userAnswerId,
+              answers: element.getRandomAnswer(),
+            ))
+        .toList();
+
+    return questions;
   }
 
   List<Question> getQuestionsByTopicId(String topicId) {
@@ -66,6 +73,16 @@ class QuizState with _$QuizState {
 
     List<Question> randomQuestions = shuffledQuestions.take(5).toList();
 
-    return randomQuestions;
+    List<Question> questions = randomQuestions
+        .map((element) => Question(
+              correctAnswerId: element.correctAnswerId,
+              imgUrl: element.imgUrl,
+              question: element.question,
+              userAnswerId: element.userAnswerId,
+              answers: element.getRandomAnswer(),
+            ))
+        .toList();
+
+    return questions;
   }
 }
